@@ -52,13 +52,13 @@ public class UserController {
 		return userService.findAllUsers();
 	}
 	
-	@PostMapping("user")
-	public ResponseEntity<User> addUsers(@RequestBody User user){
-		
-		
-		User newuser = userService.addUser(user);
-		return new ResponseEntity<User>(newuser,HttpStatus.OK);
-	}
+//	@PostMapping("user")
+//	public ResponseEntity<User> addUsers(@RequestBody User user){
+//		
+//		
+//		User newuser = userService.addUser(user);
+//		return new ResponseEntity<User>(newuser,HttpStatus.OK);
+//	}
 	
 	@PutMapping("user/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user){
