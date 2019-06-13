@@ -15,7 +15,7 @@ import com.xuming.springboot.model.User;
 public interface UserDao {
 	
 	
-	@Select("SELECT * FROM user WHERE id = #{id}")
+	@Select("SELECT * FROM user WHERE user_id = #{id}")
 	User findUserById(@Param("id") int id);
 	
 	@Select("SELECT * FROM user WHERE first_name = #{firstName}")
@@ -35,11 +35,11 @@ public interface UserDao {
 	void insertUser(@Param("firstName") String firstName,@Param("lastName") String lastName,
 			        @Param("department") String department,@Param("age") int age,@Param("salary") double salary);
 
-	@Update("UPDATE user SET first_name=#{firstName},last_name=#{lastName},department=#{department},age=#{age},salary=#{salary} WHERE id =#{id}")
+	@Update("UPDATE user SET first_name=#{firstName},last_name=#{lastName},department=#{department},age=#{age},salary=#{salary} WHERE user_id =#{id}")
 	User updateUserById(@Param("firstName") String firstName,@Param("lastName") String lastName,@Param("department") String department,
 			            @Param("age") int age,@Param("salary") double salary,@Param("id") int id);
 	
-	@Delete("DELETE FROM user WHERE id = #{id}")
+	@Delete("DELETE FROM user WHERE user_id = #{id}")
 	void deleteUserById(@Param("id") int id);
 	
 	@Delete("DELETE FROM user")

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xuming.springboot.model.User;
 import com.xuming.springboot.service.UserService;
+import com.xuming.springboot.userRepository.UserRepository;
+
 
 @RestController
 @RequestMapping("/users")
@@ -23,7 +25,10 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("user/{id}")
+	@Autowired
+	UserRepository userRepository;
+	
+	@GetMapping("/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") int id){
 		
 		User user = userService.findUserById(id);
@@ -59,6 +64,13 @@ public class UserController {
 //		User newuser = userService.addUser(user);
 //		return new ResponseEntity<User>(newuser,HttpStatus.OK);
 //	}
+	
+	@PostMapping("user")
+	public ResponseEntity<User> addUsers(@RequestBody User user){
+		
+		User newUser = userRepository.save(user);
+		return new ResponseEntity<User>(newUser,HttpStatus.OK);
+	}
 	
 	@PutMapping("user/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user){
