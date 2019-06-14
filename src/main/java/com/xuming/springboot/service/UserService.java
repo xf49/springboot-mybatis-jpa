@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.xuming.springboot.dao.UserDao;
 import com.xuming.springboot.model.User;
-import com.xuming.springboot.userRepository.UserRepository;
+//import com.xuming.springboot.userRepository.UserRepository;
 
 @Service
 public class UserService {
@@ -15,8 +15,8 @@ public class UserService {
 	@Autowired
 	UserDao userDao;
 	
-	@Autowired
-	UserRepository userRepository;
+//	@Autowired
+//	UserRepository userRepository;
 	
 	
 	public User findUserById(int id) {
@@ -49,6 +49,18 @@ public class UserService {
 		return user;
 		
 	}
+//	public User addUser(User user) {
+//		List<User> users = (List<User>) userDao.findUserSpecifically(user.getFirstName(), user.getLastName(), user.getDepartment(), user.getAge(), user.getSalary());
+//		
+//		if(users.size()>0) {
+//			System.out.print("user already exists");
+//		}else {
+//			userRepository.save(user);
+//			
+//		}
+//		return user;
+//		
+//	}
 	
 	public void updateUserById(int id,String firstName,String lastName,String department,int age,double salary) {
 		
