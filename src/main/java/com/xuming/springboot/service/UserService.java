@@ -37,7 +37,8 @@ public class UserService {
 	}
 	
 	public User addUser(User user) {
-		List<User> users = (List<User>) userDao.findUserSpecifically(user.getFirstName(), user.getLastName(), user.getDepartment(), user.getAge(), user.getSalary());
+		List<User> users = (List<User>) userDao.findUserSpecifically(user.getFirstName(), user.getLastName(), 
+				                        user.getDepartment(), user.getAge(), user.getSalary());
 		
 		if(users.size()>0) {
 			System.out.print("user already exists");
