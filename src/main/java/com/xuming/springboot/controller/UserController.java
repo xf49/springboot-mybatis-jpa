@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,20 +37,21 @@ public class UserController {
 		
 	}
 	
-	@GetMapping("user/{firstName}")
-	public ResponseEntity<User> getUserByFirstName(@PathVariable("firstName") String firstName){
+	@GetMapping()
+	public ResponseEntity<User> getUserByFirstNameOrLastName(@RequestParam(name="firstName",required=false) String firstName,
+			                                                 @RequestParam(name="lastName",required=false) String lastName){
 		
 		User user = userService.findUserByFirstName(firstName);
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	
 	
-	@GetMapping("user/{lastName}")
-	public ResponseEntity<User> getUserByLastName(@PathVariable("lastName") String lastName){
-		
-		User user = userService.findUserByLastName(lastName);
-		return new ResponseEntity<User>(user,HttpStatus.OK);
-	}
+//	@GetMapping()
+//	public ResponseEntity<User> getUserByLastName(@RequestParam(name="lastName") String lastName){
+//		
+//		User user = userService.findUserByLastName(lastName);
+//		return new ResponseEntity<User>(user,HttpStatus.OK);
+//	}
 	
 	@GetMapping("all")
 	public @ResponseBody Iterable<User> getAllUsers(){
