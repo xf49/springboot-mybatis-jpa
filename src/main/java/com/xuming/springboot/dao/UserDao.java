@@ -44,4 +44,6 @@ public interface UserDao {
 	
 	@Delete("DELETE FROM user")
 	void deleteAllUsers();
+	
+	
 }
