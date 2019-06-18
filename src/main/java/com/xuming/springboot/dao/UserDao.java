@@ -5,15 +5,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.data.repository.query.Param;
 
 import com.xuming.springboot.model.User;
 
 @Mapper
 public interface UserDao {
-	
 	
 	@Select("SELECT * FROM user WHERE user_id = #{id}")
 	User findUserById(@Param("id") int id);
@@ -44,6 +43,4 @@ public interface UserDao {
 	
 	@Delete("DELETE FROM user")
 	void deleteAllUsers();
-	
-	
 }

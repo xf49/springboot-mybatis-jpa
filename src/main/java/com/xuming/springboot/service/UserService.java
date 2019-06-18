@@ -1,5 +1,6 @@
 package com.xuming.springboot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.xuming.springboot.dao.UserDao;
 import com.xuming.springboot.model.User;
+import com.xuming.springboot.userRepository.UserRepository;
 //import com.xuming.springboot.userRepository.UserRepository;
 
 @Service
@@ -15,9 +17,8 @@ public class UserService {
 	@Autowired
 	UserDao userDao;
 	
-//	@Autowired
-//	UserRepository userRepository;
-	
+	@Autowired
+    UserRepository userRepository;
 	
 	public User findUserById(int id) {
 		return userDao.findUserById(id);
@@ -33,9 +34,26 @@ public class UserService {
 	}
 	
 	public List<User> findAllUsers(){
-		return userDao.findAllUsers();
+		List<User> list = new ArrayList<User>();
+		
+		 userDao.findAllUsers().forEach(e->list.add(e));
+		 
+		 return list;
 	}
 	
+	public User addUser(User user) {
+		List<User> users = (List<User>) userDao.findUserSpecifically(user.getFirstName(), user.getLastName(), 
+				                        user.getDepartment(), user.getAge(), user.getSalary());
+		
+		if(users.size()>0) {
+			System.out.print("user already exists");
+		}else {
+			userRepository.save(user);
+			
+		}
+		return user;
+		
+	}
 //	public User addUser(User user) {
 //		List<User> users = (List<User>) userDao.findUserSpecifically(user.getFirstName(), user.getLastName(), user.getDepartment(), user.getAge(), user.getSalary());
 //		

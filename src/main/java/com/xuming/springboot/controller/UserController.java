@@ -1,5 +1,7 @@
 package com.xuming.springboot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +56,7 @@ public class UserController {
 //	}
 	
 	@GetMapping("all")
-	public @ResponseBody Iterable<User> getAllUsers(){
+	public @ResponseBody List<User> getAllUsers(){
 		
 		return userService.findAllUsers();
 	}
