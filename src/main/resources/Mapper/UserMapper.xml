@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="com.xuming.springboot.dao.UserDao">
+
+    <select id="getUserByFirstName" parameterType="String" resultType="com.xuming.springboot.model.User">
+        SELECT * FROM user WHERE first_name = #{firstName}
+    </select>
+
+</mapper>

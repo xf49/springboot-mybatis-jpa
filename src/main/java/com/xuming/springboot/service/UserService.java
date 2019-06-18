@@ -89,4 +89,8 @@ public class UserService {
 		userDao.deleteAllUsers();
 	}
 	
+	public User getUserByFirstName(String firstName) {
+		return userDao.getUserByFirstName(firstName);
+	}
+	
 }

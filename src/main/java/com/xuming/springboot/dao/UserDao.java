@@ -23,7 +23,7 @@ public interface UserDao {
 	@Select("SELECT * FROM user WHERE last_name = #{lastName}")
 	User findUserByLastName(@Param("lastName") String lastName);
 	
-	@Select("SELECT * FROM user order by user_id")
+	@Select("SELECT * FROM user order by salary desc")
 	List<User> findAllUsers();
 	
 	@Select("SELECT * FROM user WHERE first_name=#{firstName} AND last_name=#{lastName} AND department=#{department} AND age=#{age} AND salary=#{salary}")
@@ -43,4 +43,7 @@ public interface UserDao {
 	
 	@Delete("DELETE FROM user")
 	void deleteAllUsers();
+	
+	
+	User getUserByFirstName(String firstName);
 }

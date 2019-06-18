@@ -1,5 +1,6 @@
 package com.xuming.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,14 +57,17 @@ public class UserController {
 //	}
 	
 	@GetMapping("all")
-	public @ResponseBody List<User> getAllUsers(){
-		
-		return userService.findAllUsers();
+	public ResponseEntity< List<User> >getAllUsers(){
+		List<User> users = new ArrayList<User>();
+		users = userService.findAllUsers();
+		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
 	}
 	
 	@GetMapping("allUsers")
-	public @ResponseBody List<User> getUsers(){
-		return (List<User>) userRepository.findAll();
+	public ResponseEntity<List<User>> getUsers(){
+		List<User> users = new ArrayList<User>();
+		users = (List<User>) userRepository.findAll();
+		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
 	}
 	
 //	@PostMapping("user")
@@ -100,6 +104,14 @@ public class UserController {
 	public ResponseEntity<Void> deleteAllUsers(){
 		userService.deleteAllUsers();
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping("user")
+	public ResponseEntity<User> getUserByFirstName(@RequestParam(required=false) String firstName){
+		
+		User user = userService.getUserByFirstName(firstName);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
+		
 	}
 	
 	
