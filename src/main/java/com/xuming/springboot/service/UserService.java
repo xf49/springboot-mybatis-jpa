@@ -38,6 +38,8 @@ public class UserService {
 		
 		 userDao.findAllUsers().forEach(e->list.add(e));
 		 
+		 System.out.println(list);
+		 
 		 return list;
 	}
 	

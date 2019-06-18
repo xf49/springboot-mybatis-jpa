@@ -61,6 +61,11 @@ public class UserController {
 		return userService.findAllUsers();
 	}
 	
+	@GetMapping("allUsers")
+	public @ResponseBody List<User> getUsers(){
+		return (List<User>) userRepository.findAll();
+	}
+	
 //	@PostMapping("user")
 //	public ResponseEntity<User> addUsers(@RequestBody User user){
 //		

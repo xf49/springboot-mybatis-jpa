@@ -14,7 +14,7 @@ import com.xuming.springboot.model.User;
 @Mapper
 public interface UserDao {
 	
-	@Select("SELECT * FROM user WHERE user_id = #{id}")
+	@Select("SELECT first_name,last_name FROM user WHERE user_id = #{id}")
 	User findUserById(@Param("id") int id);
 	
 	@Select("SELECT * FROM user WHERE first_name = #{firstName}")
@@ -23,7 +23,7 @@ public interface UserDao {
 	@Select("SELECT * FROM user WHERE last_name = #{lastName}")
 	User findUserByLastName(@Param("lastName") String lastName);
 	
-	@Select("SELECT * FROM user")
+	@Select("SELECT * FROM user order by user_id")
 	List<User> findAllUsers();
 	
 	@Select("SELECT * FROM user WHERE first_name=#{firstName} AND last_name=#{lastName} AND department=#{department} AND age=#{age} AND salary=#{salary}")
