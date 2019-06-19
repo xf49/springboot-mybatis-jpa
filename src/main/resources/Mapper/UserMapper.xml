@@ -2,7 +2,7 @@
 
 <mapper namespace="com.xuming.springboot.dao.UserDao">
 
-    <select id="getUserByFirstName" parameterType="String" resultType="com.xuming.springboot.model.User">
+    <select id="getUserByFirstName" parameterType="String" resultType="com.xuming.springboot.dao.UserDao">
         SELECT * FROM user WHERE first_name = #{firstName}
     </select>
 
