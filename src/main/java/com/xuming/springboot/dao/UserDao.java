@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.data.repository.query.Param;
@@ -24,6 +26,11 @@ public interface UserDao {
 	User findUserByLastName(@Param("lastName") String lastName);
 	
 	@Select("SELECT * FROM user order by salary desc")
+    @Results(value = {
+    	      @Result(property = "id", column = "user_id"),
+    	      @Result(property = "firstName", column = "first_name"),
+    	      @Result(property = "lastName", column = "last_name")
+    	   })
 	List<User> findAllUsers();
 	
 	@Select("SELECT * FROM user WHERE first_name=#{firstName} AND last_name=#{lastName} AND department=#{department} AND age=#{age} AND salary=#{salary}")
