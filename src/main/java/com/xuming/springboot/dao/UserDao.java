@@ -16,7 +16,12 @@ import com.xuming.springboot.model.User;
 @Mapper
 public interface UserDao {
 	
-	@Select("SELECT first_name,last_name FROM user WHERE user_id = #{id}")
+	@Select("SELECT * FROM user WHERE user_id = #{id}")
+	@Results(value = {
+		@Result(property = "id", column = "user_id"),
+		@Result(property = "firstName", column = "first_name"),
+		@Result(property = "lastName", column = "last_name")
+	 })
 	User findUserById(@Param("id") int id);
 	
 	@Select("SELECT * FROM user WHERE first_name = #{firstName}")
