@@ -62,8 +62,8 @@ public class UserService {
 		if(users.size()>0) {
 			System.out.print("user already exists");
 		}else {
-			userDao.insertUser(user.getFirstName(), user.getLastName(), user.getDepartment(), user.getAge(), user.getSalary());
-			
+			//userDao.insertUser(user.getFirstName(), user.getLastName(), user.getDepartment(), user.getAge(), user.getSalary());
+			userRepository.save(user);
 		}
 		return user;
 		
