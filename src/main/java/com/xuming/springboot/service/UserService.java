@@ -56,28 +56,30 @@ public class UserService {
 		return user;
 		
 	}
-//	public User addUser(User user) {
-//		List<User> users = (List<User>) userDao.findUserSpecifically(user.getFirstName(), user.getLastName(), user.getDepartment(), user.getAge(), user.getSalary());
-//		
-//		if(users.size()>0) {
-//			System.out.print("user already exists");
-//		}else {
-//			userRepository.save(user);
-//			
-//		}
-//		return user;
-//		
-//	}
+	public User addNewUser(User user) {
+		List<User> users = (List<User>) userDao.findUserSpecifically(user.getFirstName(), user.getLastName(), user.getDepartment(), user.getAge(), user.getSalary());
+		
+		if(users.size()>0) {
+			System.out.print("user already exists");
+		}else {
+			userDao.insertUser(user.getFirstName(), user.getLastName(), user.getDepartment(), user.getAge(), user.getSalary());
+			
+		}
+		return user;
+		
+	}
 	
-	public void updateUserById(int id,String firstName,String lastName,String department,int age,double salary) {
+	public User updateUserById(int id,String firstName,String lastName,String department,int age,double salary) {
 		
-		List<User> users = (List<User>) userDao.findUserById(id);
+		User user =  userDao.findUserById(id);
 		
-		if(users.size()<=0) {
+		if(user==null) {
 			System.out.print(" user does not exist ");
 		}else {
-			userDao.updateUserById(firstName, lastName, department, age, salary, id);
+			user=userDao.updateUserById(firstName, lastName, department, age, salary, id);
 		}
+		
+		return user;
 		
 	}
 	

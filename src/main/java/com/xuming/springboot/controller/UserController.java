@@ -85,13 +85,22 @@ public class UserController {
 		return new ResponseEntity<User>(newUser,HttpStatus.OK);
 	}
 	
+	@PostMapping()
+	public ResponseEntity<User> postUsers(@RequestBody User user){
+		User postedUser = userService.addNewUser(user);
+		
+		return new ResponseEntity<User>(postedUser,HttpStatus.OK);
+		
+		
+	}
+	
 	@PutMapping("user/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user){
 		
-		userService.updateUserById(id, user.getFirstName(), user.getLastName(), 
+		User updatedUser = userService.updateUserById(id, user.getFirstName(), user.getLastName(), 
 				user.getDepartment(), user.getAge(), user.getSalary());
 		
-		return new ResponseEntity<User>(user,HttpStatus.OK);
+		return new ResponseEntity<User>(updatedUser,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("user/{id}")
